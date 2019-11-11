@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Registration Form</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="/home/dell/project/global.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">></script>
+	</head>
+	<body>
+		<form id ="form_sub" action="/home/dell/project/loginpage.html" method="get">
+				<div class="form-container">
+					<ul class="list">
+						<li>
+							<h2>Member Signup</h2>
+						</li>
+						<br>
+						<li>
+							<b>Firstname:</b>
+						    <input id="first_name" type="Text" name="Firstname">
+						    <span id="first_empty"><br>field cant be empty</span>
+						    <span id="first_name_error"><br>atlest 4 letters required</span>
+						</li>
+						<br>
+						<li>
+
+
+							<b>Lastname:</b>
+							  <input id="last_name" type="Text" name="Lastname">
+							 	<span id="lname_error"><br>atlest 4 letters required</span>
+						    <span id="last_empty"><br>field cant be empty</span>
+							</li>
+							<br>
+						<li>
+							<b>Email:	</b>
+							<br>
+						   <input id="email" type="email" name="email">	
+						   <span id="email_empty"><br>field cant be empty</span>
+						   <span id="email_valid">invalid form</span>	
+						   
+					  </li>
+					  <br>
+						<li>
+							<b>Password:</b>
+						    <input id="password" type="password"  name="password" placeholder=".........">
+						    <span id="psd_length"><br>one special character,one uppercase and lowercase letter and a digit</span>
+						    <span id="psd_check"><br>field cant be empty</span>
+					  </li>
+					  <br>
+						<li>
+							<b>Re-enter password:</b>
+							<input id="repassword" type="password"  name="confpassword" placeholder=".......">
+							<span id="repass_error"><br>password doesnt match</span>
+							<span id="repass_length"><br>field cant be empty.</span>
+						</li>
+						<br>
+						<li>
+							<b>male:</b><input type="radio" name="gender" value="1" id="radio0" class="radio" >
+						  <b>female:</b><input type="radio" name="gender" value="2" id="radio1" class="radio" >
+					    <b>other:</b><input type="radio" name="gender" value="3" id="radio2" class="radio" >
+					    <span id = "radio_error"><br>must be filled</span>
+					  </li>
+					  <br>
+						<li>
+							<input type="checkbox" name="checkbox1" id="checkbtn"> I agree all terms and conditions.
+							<span id="checkbox_error">unchecked</span>
+						</li>
+						<br>
+						<li>
+              <button id="submitbtn">Submit</button>
+            </li>
+					</ul>		
+				</div>
+		</form>
+	</body>
+</html>	
+<script>
+ 
+ $('#checkbox_error').hide();
+ $('#radio_error').hide();
+ $('#email_valid').hide();
+ $('#email_empty').hide();
+ $('#last_empty').hide();
+ $('#lname_error').hide();
+ $('#first_empty').hide();
+ $('#first_name_error').hide();
+ $('#psd_length').hide();
+ $('#repass_error').hide();
+ $('#checked_error').hide();
+ $('#repass_length').hide();
+ $('#psd_check').hide();
+ $('#psd_check').hide();
+
+
+
+$(document).ready(function(){
+
+
+  $("#submitbtn").click(function(event) {
+  	if($("#email").val().length == 0 || $("#password").val().length == 0 || $("#first_name").val().length == 0 || $("#last_name").val().length == 0 || $("#repassword").val().length == 0) {
+  	event.preventDefault(); 
+
+  		if ($("#repassword").val().length == 0) {
+ 			$("#repass_length").show();
+ 			$("#repass_error").hide();
+ 		} 
+    else if ($("#repassword").val().length!= $("#password").val().length) {
+ 		  $("#repass_error").show();
+ 		  $("#repass_length").hide();
+ 		}
+ 		else{
+ 			$("#repass_length").hide;
+ 		  $("#repass_error").hide();
+ 		}
+
+	 if ($("#email").val().length == 0) {
+        $('#email_empty').show();
+  		  $("#email_valid").hide();
+  	  }
+  	else {
+  		 $("#email_empty").hide();
+  		  $('#email_valid').hide();
+  	  } 
+
+	    if($("#password").val().length == 0) {
+	  	$("#psd_check").show();
+	  	$("#psd_length").hide();
+	  } 
+	   else {
+	   	$("#psd_check").hide();
+	  	$("#psd_length").hide();
+	   }
+      if($("#first_name").val().length == 0) {
+	      $('#first_empty').show();
+	      $('#first_name_error').hide();
+  	}
+  	else if ($("#first_name").val().length < 4 ) { 
+  		  $('#first_empty').hide();
+  		  $('#first_name_error').show();
+  	}  	
+  	else {
+			 $('#first_empty').hide(); 
+  		 $('#first_name_error').hide();
+  	} 
+
+  	if ($("#last_name").val().length == 0){
+  		 $('#last_empty').show();
+  		 $('#lname_error').hide();
+  	  }
+    else if ($("#last_name").val().length < 4 ){ 
+  		   $('#lname_error').show();
+  		   $('#last_empty').hide();
+  		}  		
+  	else {
+  		 $('#last_empty').hide();
+  		 $('#lname_error').hide();
+  	}
+  
+  	
+    if($('input[name="gender"]:checked').val()) {
+   	$('#radio_error').hide();
+   }
+   else {
+   	$('#radio_error').show();
+   }
+
+  if ($('#checkbtn').prop('checked')) {
+      $('#checkbox_error').hide();
+    }
+    else {
+      
+   	 	$('#checkbox_error').show();
+    }
+  }
+  else {
+  	$(this).submit();
+  }
+
+});
+  		  
+ $("#first_name").blur(function() { 
+  	
+  	if($("#first_name").val().length == 0) {
+	      $('#first_empty').show();
+	      $('#first_name_error').hide();
+  	}
+  	else if ($("#first_name").val().length < 4 ) { 
+  		  $('#first_empty').hide();
+  		  $('#first_name_error').show();
+  	}  	
+  	else {
+			 $('#first_empty').hide(); 
+  		 $('#first_name_error').hide();
+     } 
+ });
+
+  $(".radio").click(function(){
+  	
+  	
+   if($('input[name="gender"]:checked').val()){
+
+   	$('#radio_error').hide();
+   }
+   else {
+   	$('#radio_error').show();
+   }
+  });
+ 
+  $("#checkbtn").click(function() {
+  
+    if ($('#checkbtn').prop('checked')) {
+      $('#checkbox_error').hide();
+    }
+    else {
+      
+   	 	$('#checkbox_error').show();
+    }
+  });
+
+ 
+  $("#last_name").blur(function() {
+
+    if ($("#last_name").val().length == 0){
+  		 $('#last_empty').show();
+  		 $('#lname_error').hide();
+  	  }
+    else if ($("#last_name").val().length < 4 ){ 
+  		 $('#lname_error').show();
+  		  $('#last_empty').hide();
+  		}  		
+  	else {
+  		 $('#last_empty').hide();
+  		 $('#lname_error').hide();
+  	}  	
+  });
+
+  $("#email").keydown(function() {
+  	if ($("#email").val().length == 0) {
+        $('#email_empty').show();
+  		}
+  	else {
+  		 $("#email_empty").hide();
+  	  }  
+		var re =  /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		var email1 = $(this).val();
+
+  	if(!re.test(email1)) {
+  		$("#email_valid").show(); 
+  	}
+  	else {
+     $("#email_valid").hide();
+   }
+  });
+ 
+
+  $("#password").blur(function() {
+  
+	  if($("#password").val().length == 0) {
+	  	$("#psd_check").show();
+	  	$("#psd_length").hide();
+	  } 
+	   else {
+	   	$("#psd_check").hide();
+	  	$("#psd_length").hide();
+	   }
+
+  	var reg =  /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  	var pass = $(this).val();
+	   if (!reg.test(pass)) {
+	  	
+ 	      $("#psd_length").show();
+ 	      $("#psd_check").hide();
+     }
+    else {
+    	$("#psd_length").hide();
+    	$("#psd_check").hide();
+    }
+  });
+
+
+  $("#repassword").blur(function() {
+ 
+ 		if ($("#repassword").val().length == 0) {
+ 			 $("#repass_length").show();
+ 			 $("#repass_error").hide();
+ 		} 
+    else if ($("#repassword").val().length!= $("#password").val().length) {
+ 		  $("#repass_error").show();
+ 		  $("#repass_length").hide();
+ 		}
+ 		else{
+ 			$("#repass_length").hide();
+ 		  $("#repass_error").hide();
+ 		}
+  });
+
+
+
+});
+
+
+
+</script>
+<style type="text/css">
+#email_empty,#last_empty,#lname_error,#first_empty,#first_name_error,#psd_length,#repass_error,#checked_error,#psd_check,
+#psd_check,#checkbox_error,#radio_error,#repass_length ,#email_valid{
+	display: none;
+	color: red;
+	font-size: 12px
+
+}
+
+</style>

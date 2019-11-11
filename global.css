@@ -1,0 +1,52 @@
+*{margin:0;padding:0;}
+body{
+	background-image: url(/home/dell/project/wallpaper.jpeg);
+ padding-top: 10vh;
+}
+
+.form-container{
+ width: 300px;
+ height: auto;
+ padding:40px 50px;
+ background-color: #f2f2f2;
+ border-radius:10px;
+ box-shadow: 0 0 20px black; 
+ margin: auto;
+ box-sizing: none;
+border-style: none; 
+}
+
+ul.list{
+	list-style-type: none;
+	color:#001a13;
+	padding-top:none;
+}
+
+ul.list li{
+	width: 250px;
+	text-align: left;
+	margin: none;
+	border-width: none;
+}
+
+ul.list li input{
+	text-align: center;
+	size: 20;
+	padding: 10px;
+	background-color: #e6ffe6; 
+	border-style: none;
+	box-shadow: none;
+	color: black;
+}
+
+ul.list li input[type=text] {color: black;
+}
+
+ul.list li input[type=submit]{
+	background-color: #f349;
+hfdhv
+
+}
+
+
+

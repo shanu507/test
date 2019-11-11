@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" type="text/css" href="/home/dell/project/global.css">
+</head>
+<body>
+	<form id="form_sub" action="/home/dell/project/loginpage.html" method="get">
+		<div class="form-container">
+
+			<ul class="list">
+				<li>
+					<h2>Member Signup</h2><br>
+				</li>
+				<li>
+					<b>Firstname:</b>
+					<input id="first_name" type="Text" name="Firstname" onblur = "myfunc(this)">
+					<span id="first_name_error" >First name should not be blank</span>
+					<span id="letters">only alphabets allowed</span>
+				</li>
+				<li>
+					<b>Lastname:</b>
+					<input id="last_name" type="Text" name="Lastname" onblur="mylname()">
+					<span id = "last_error" >Last name should not be blank</span>
+					<span id="letter">only alphabets allowed</span>
+				</li>
+				<li>
+					<b>Email:	</b>
+					<br>
+					<input id="email" name="email" type="text" onblur="validateEmail(this)" >
+					<span id = "email_error" >email should not be blank</span>	
+					<span id = "email_error_">please enter valid email</span>	
+				</li>
+				<li>
+					<b>Password:</b>
+					<input id="password" type="password"  name="password" placeholder="........." onblur="mypass(this)">
+					<span id = "password_error" >password should not be blank</span>
+					<span id="upper_error">password should include atleast one uppercaseletter,one lowercase,special character and one number</span>
+				</li>
+				<li>
+					<b>Re-enter password:</b>
+					<input id="repassword" type="password"  name="password" placeholder="......." onblur="myrepass(this)">
+					<span id= "error_message"> re-enter the password </span>
+					<span id="confirm"> password does not match</span>
+				</li>
+				<br>
+				<li>
+					<b>male:</b><input type="radio" id="gender0" class="radio" value="0" name="gender" onclick ="radiobtn(this)">
+					<b>female:</b><input type="radio" id="gender1" class="radio"  value="1" name="gender"  onclick="radiobtn(this)">
+					<b>other:</b><input type="radio" id="gender2" class="radio"  value="2" name="gender"  onblur="radiobtn(this)">
+					<span id="gender_error">select a gender.</span>
+				</li>
+				<br>
+				<li>
+					<input type="checkbox" name="checkbox" id="checked" onclick = "checkbtn(this)"> I agree all terms and conditions.
+					<span id="check_error">checkbox is unchecked</span>
+				</li>
+				<br>
+				<li>
+					<button onclick="myFunction()">sign up</button>
+					<span id = "subid" onclick="form_sub()"></span>
+				</li>
+			</ul>		
+		</div>
+	</form>
+</body>
+
+<script type="text/javascript">
+
+   	
+  function radiobtn(gender) {
+  
+   
+   	var gender = document.getElementById('gender');
+    if (document.querySelector('input[name="gender"]:checked')) {
+    document.getElementById('gender_error').style.display = "none";
+    }
+    else {
+    	document.getElementById('gender_error').style.display = "block";
+    }
+  }
+    	
+
+
+
+  function checkbtn(check) {
+
+  	var check = document.getElementById('checked');
+
+  	if (document.querySelector('input[name="checkbox"]:checked')) {
+
+  		document.getElementById('check_error').style.display ="none";
+  	}
+  	else {
+  		document.getElementById('check_error').style.display = "block";
+  	}
+  }
+
+
+
+	function validateEmail(email) {
+
+
+		var email = document.getElementById('email').value;
+		var pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		var email = document.getElementById('email').value;
+
+		if (email == "") {
+			document.getElementById('email_error').style.display = "block";
+			document.getElementById('email_error_').style.display = "none";
+		}
+		else if (pattern.test(email) == false) {
+			document.getElementById('email_error_').style.display = "block";
+			document.getElementById('email_error').style.display = "none";
+		}
+		else {
+			document.getElementById('email_error_').style.display = "none";	
+			document.getElementById('email_error').style.display = "none";
+		}
+	}
+
+  function mylname(lname) {
+
+   	var lname = document.getElementById('last_name').value;
+   	var letter = /^[A-Za-z]+$/;
+   	if (lname == "") {
+   		document.getElementById('last_error').style.display = "block";
+   		document.getElementById('letter').style.display = "none";
+   	}
+   	else if (letter.test(lname) == false) {
+   		document.getElementById('letter').style.display = "block";
+   		document.getElementById('last_error').style.display = "none";	
+   	}
+   	else{
+   		document.getElementById('letter').style.display = "none";
+   		document.getElementById('last_error').style.display = "none";	
+   	}
+   }
+
+  function myfunc(fname){
+   	var fname = document.getElementById('first_name').value;
+   	var letters = /^[A-Za-z]+$/;
+   	if (fname == "" ){
+   		document.getElementById('first_name_error').style.display = "block";
+   		document.getElementById('letters').style.display = "none";
+   	}
+   	else if (letters.test(fname) == false) {
+
+      document.getElementById('letters').style.display = "block";
+   		document.getElementById('first_name_error').style.display = "none";
+   	}
+   	else {
+   		document.getElementById('letters').style.display = "none";
+   		document.getElementById('first_name_error').style.display = "none";
+   	}
+   } 
+
+
+	function mypass(pass) {
+
+		var pass = document.getElementById('password').value;
+		var re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+     if(pass == "") {
+     	document.getElementById('password_error').style.display = "block";	
+     	document.getElementById('upper_error').style.display = "none";
+     }
+     else if (re.test(pass) == false) {
+     	document.getElementById('upper_error').style.display = "block";
+     	document.getElementById('password_error').style.display = "none";	
+     }
+     else {
+     	document.getElementById('password_error').style.display = "none";	
+     	document.getElementById('upper_error').style.display = "none";
+     }
+   }
+
+
+  function myrepass(repass) {
+
+   	var pass=document.getElementById('password').value;
+   	var repass=document.getElementById('repassword').value;
+
+   	if (repass == "") {
+
+   		document.getElementById('error_message').style.display = "block";
+   		document.getElementById('confirm').style.display = "none";
+   	}
+   	else if (pass!=repass) {
+   		document.getElementById('confirm').style.display = "block";
+   		document.getElementById('error_message').style.display = "none";
+   	}
+   	else {
+   		document.getElementById('error_message').style.display = "none";
+   		document.getElementById('confirm').style.display = "none";
+   	}
+
+
+   }
+
+
+   function myFunction() {
+   	var fname = document.getElementById('first_name').value;
+   	var lname = document.getElementById('last_name').value;
+   	var email = document.getElementById('email').value;
+   	var pass = document.getElementById('password').value;
+   	var repass = document.getElementById('repassword').value;
+   	var check = document.getElementById('checked').value;
+ 		var email = document.getElementById('email').value;
+
+
+   	if (fname == ""||lname == ""||email == ""||pass == ""||repass == "" ||check == "" ) {
+
+   		event.preventDefault();
+   	}
+   	else {
+   		document.form['form_sub'].submit();
+   	}
+
+   	myrepass();
+   	validateEmail();
+   	myfunc();
+   	mylname();
+   	mypass();
+   	radiobtn();
+   	checkbtn();
+
+   }
+
+
+
+ </script>
+
+ </html>
+
+ <style type="text/css">
+ 	#first_name_error, #last_error, #email_error,#email_error_, #upper_error,#password_error, #error_message, #subid, #letters,#letter, #confirm, #gender_error, #check_error, #gender_female{
+ 		display: none;
+ 		color:red;
+ 		font-size: 12px;}
+ 	</style>
